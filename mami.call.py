@@ -89,10 +89,10 @@ def format_phone(num):
 def do_zip_update():
     success = False
     if DEBUG_MODE:
-        zip_url = "https://github.com/TheSpeedX/TBomb/archive/dev.zip"
+        zip_url = "https://github.com/mamitab/mami.call/archive/dev.zip"
         dir_name = "TBomb-dev"
     else:
-        zip_url = "https://github.com/TheSpeedX/TBomb/archive/master.zip"
+        zip_url = "https://github.com/mamitab/mami.call/archive/master.zip"
         dir_name = "TBomb-master"
     print(ALL_COLORS[0]+"Downloading ZIP ... "+RESET_ALL)
     response = requests.get(zip_url)
@@ -173,7 +173,7 @@ def check_for_updates():
         return
     mesgdcrt.SectionMessage("Checking for updates")
     fver = requests.get(
-        "https://raw.githubusercontent.com/TheSpeedX/TBomb/master/.version"
+        "https://raw.githubusercontent.com/mamit/mami.call/master/.version"
     ).text.strip()
     if fver != __VERSION__:
         mesgdcrt.WarningMessage("An update is available")
@@ -310,12 +310,12 @@ def selectnode(mode="sms"):
         check_for_updates()
         notifyen()
 
-        max_limit = {"sms": 1000, "call": 1000, "mail": 2000}
+        max_limit = {"sms": 500, "call": 15, "mail": 200}
         cc, target = "", ""
         if mode in ["sms", "call"]:
             cc, target = get_phone_info()
             if cc != "90":
-                max_limit.update({"sms": 1000})
+                max_limit.update({"sms": 100})
         elif mode == "mail":
             target = get_mail_info()
         else:
